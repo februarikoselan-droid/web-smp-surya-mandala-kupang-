@@ -1,0 +1,6 @@
+{
+  "name": "SMA Cipta Cemerlang - Portal Resmi Sekolah",
+  "description": "Website resmi SMA Cipta Cemerlang yang menyajikan kegiatan harian, prestasi siswa, fasilitas sekolah, dan program pendidikan secara transparan dan akuntabel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
