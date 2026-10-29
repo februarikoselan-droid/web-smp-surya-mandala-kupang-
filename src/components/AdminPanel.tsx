@@ -70,7 +70,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     detailedObjectives: ['Tujuan pembelajaran 1', 'Tujuan pembelajaran 2'],
     transparencyNotes: 'Didanai melalui Bantuan Operasional Sekolah (BOS) tanpa pungutan siswa.',
     status: 'Terjadwal Hari Ini',
-    documentationImage: '/src/assets/images/classroom_learning_smp_1793208896542.jpg'
+    documentationImage: '/images/classroom_learning_smp_1793208896542.jpg'
   });
 
   // 3. Achievement Form State
@@ -90,7 +90,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     description: '',
     impactAndTakeaways: 'Meningkatkan motivasi dan rasa percaya diri siswa di sekolah.',
     certificateRef: 'SK-SMPS-PRESTASI-2024',
-    image: '/src/assets/images/ceremony_activities_smp_1793208897945.jpg'
+    image: '/images/ceremony_activities_smp_1793208897945.jpg'
   });
 
   // 4. Facility Form State
@@ -98,7 +98,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [newFacility, setNewFacility] = useState<Omit<SchoolFacility, 'id'>>({
     name: '',
     category: 'Pembelajaran',
-    image: '/src/assets/images/classroom_learning_smp_1793208896542.jpg',
+    image: '/images/classroom_learning_smp_1793208896542.jpg',
     capacity: '30 Siswa',
     areaSize: '48 m²',
     location: 'Gedung Utama',

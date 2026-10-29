@@ -13,11 +13,11 @@ import {
 
 // Authentic images reflecting Indonesian community school ("sekolah rakyat") in Kupang, NTT
 export const schoolImages = {
-  heroCampus: '/src/assets/images/hero_smp_surya_mandala_1793208894892.jpg',
-  classroom: '/src/assets/images/classroom_learning_smp_1793208896542.jpg',
-  library: '/src/assets/images/reading_corner_library_1793208897708.jpg',
-  ceremony: '/src/assets/images/ceremony_activities_smp_1793208897945.jpg',
-  alumni: '/src/assets/images/alumni_community_ntt_1793208898780.jpg',
+  heroCampus: '/images/hero_smp_surya_mandala_1793208894892.jpg',
+  classroom: '/images/classroom_learning_smp_1793208896542.jpg',
+  library: '/images/reading_corner_library_1793208897708.jpg',
+  ceremony: '/images/ceremony_activities_smp_1793208897945.jpg',
+  alumni: '/images/alumni_community_ntt_1793208898780.jpg',
 };
 
 export const schoolGeneralInfo = {

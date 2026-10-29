@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Clock, MapPin, User, Search, Calendar, ChevronRight, CheckCircle2, Info } from 'lucide-react';
 import { dailyRoutineSchedule, todayActivities } from '../data/schoolData';
 import { ActivityCategory, SchoolActivity } from '../types/school';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface DailyActivitiesSectionProps {
   activities?: SchoolActivity[];
@@ -127,9 +128,10 @@ export const DailyActivitiesSection: React.FC<DailyActivitiesSectionProps> = ({
                     {act.documentationImage && (
                       <div className="relative h-44 overflow-hidden bg-stone-100 border-b border-stone-200">
                         <img
-                          src={act.documentationImage}
+                          src={normalizeImageUrl(act.documentationImage)}
                           alt={act.title}
-                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          onError={(e) => handleImageError(e)}
                           className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                         />
                         <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-stone-800 text-xs px-2.5 py-1 rounded font-medium">

@@ -65,21 +65,46 @@ const defaultState: SchoolContentState = {
   aspirasiList: initialAspirasiList
 };
 
+function normalizeImagePaths<T>(data: T): T {
+  if (!data) return data;
+  if (typeof data === 'string') {
+    if (data.startsWith('/src/assets/images/')) {
+      return data.replace('/src/assets/images/', '/images/') as unknown as T;
+    }
+    return data;
+  }
+  if (Array.isArray(data)) {
+    return data.map(item => normalizeImagePaths(item)) as unknown as T;
+  }
+  if (typeof data === 'object') {
+    const res: any = {};
+    for (const key of Object.keys(data)) {
+      res[key] = normalizeImagePaths((data as any)[key]);
+    }
+    return res;
+  }
+  return data;
+}
+
 function getLocalState(): SchoolContentState {
   if (typeof window === 'undefined') return defaultState;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return normalizeImagePaths(parsed);
+    }
   } catch (e) {
     // ignore
   }
-  return defaultState;
+  return normalizeImagePaths(defaultState);
 }
 
 function setLocalState(state: SchoolContentState) {
   if (typeof window === 'undefined') return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    const normalized = normalizeImagePaths(state);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
   } catch (e) {
     // ignore
   }
@@ -91,7 +116,8 @@ export const api = {
     try {
       const res = await fetch('/api/content');
       if (res.ok) {
-        const data = await res.json();
+        const rawData = await res.json();
+        const data = normalizeImagePaths(rawData);
         setLocalState(data);
         return data;
       }

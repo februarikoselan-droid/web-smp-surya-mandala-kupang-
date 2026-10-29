@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Building2, ShieldCheck, CheckCircle2, Users, Maximize2, Wrench, ChevronRight } from 'lucide-react';
 import { schoolFacilities } from '../data/schoolData';
 import { FacilityCategory, SchoolFacility } from '../types/school';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface FacilitiesSectionProps {
   facilities?: SchoolFacility[];
@@ -73,9 +74,10 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({
             >
               <div className="relative h-64 sm:h-72 overflow-hidden bg-stone-100">
                 <img
-                  src={fac.image}
+                  src={normalizeImageUrl(fac.image)}
                   alt={fac.name}
-                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={(e) => handleImageError(e)}
                   className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 bg-stone-900/80 backdrop-blur-xs text-white text-xs px-3 py-1 rounded font-medium">

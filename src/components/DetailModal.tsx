@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, MapPin, Calendar, Clock, User, Award, CheckCircle2, ShieldCheck, Wrench, ExternalLink, Sparkles } from 'lucide-react';
 import { SchoolActivity, StudentAchievement, SchoolFacility, SchoolProgram } from '../types/school';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface DetailModalProps {
   item: SchoolActivity | StudentAchievement | SchoolFacility | SchoolProgram | null;
@@ -52,9 +53,10 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, type, onClose })
         {headerImage ? (
           <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-stone-100">
             <img
-              src={headerImage}
+              src={normalizeImageUrl(headerImage)}
               alt={headerTitle}
-              referrerPolicy="no-referrer"
+              loading="lazy"
+              onError={(e) => handleImageError(e)}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

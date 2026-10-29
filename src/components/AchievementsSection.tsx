@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Trophy, Award, Search, User, Calendar, ExternalLink, Sparkles, Filter } from 'lucide-react';
 import { studentAchievements } from '../data/schoolData';
 import { AchievementCategory, AchievementLevel, StudentAchievement } from '../types/school';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface AchievementsSectionProps {
   achievements?: StudentAchievement[];
@@ -141,9 +142,10 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               {ach.image && (
                 <div className="relative h-44 overflow-hidden bg-stone-100 border-b border-stone-200">
                   <img
-                    src={ach.image}
+                    src={normalizeImageUrl(ach.image)}
                     alt={ach.title}
-                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    onError={(e) => handleImageError(e)}
                     className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3 bg-stone-900/85 backdrop-blur-xs text-white text-xs px-2.5 py-1 rounded font-medium">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Users, GraduationCap, HeartHandshake, BookOpen, Send, CheckCircle2, Search, MapPin, Sparkles, MessageSquareHeart } from 'lucide-react';
 import { initialAlumniList, schoolImages } from '../data/schoolData';
 import { AlumniRecord } from '../types/school';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 import { api } from '../services/api';
 
@@ -126,9 +127,10 @@ export const AlumniSection: React.FC<AlumniSectionProps> = ({
         <div className="mb-10 rounded-xl overflow-hidden border border-stone-200 bg-stone-50 grid grid-cols-1 lg:grid-cols-12 shadow-xs">
           <div className="lg:col-span-5 relative h-64 lg:h-auto overflow-hidden bg-stone-100">
             <img
-              src={schoolImages.alumni}
+              src={normalizeImageUrl(schoolImages.alumni)}
               alt="Silaturahmi Alumni SMPS Surya Mandala"
-              referrerPolicy="no-referrer"
+              loading="lazy"
+              onError={(e) => handleImageError(e)}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent flex flex-col justify-end p-4 text-white">

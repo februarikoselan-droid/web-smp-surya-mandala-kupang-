@@ -13,6 +13,11 @@ const INITIAL_DB_FILE = path.resolve(__dirname, 'data', 'initialDatabase.json');
 
 app.use(express.json({ limit: '10mb' }));
 
+// Serve static images directly from public
+app.use('/images', express.static(path.resolve(__dirname, 'public', 'images')));
+app.use('/src/assets/images', express.static(path.resolve(__dirname, 'public', 'images')));
+app.use(express.static(path.resolve(__dirname, 'public')));
+
 // Ensure database file exists
 function loadDatabase() {
   try {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, FileCheck, ShieldCheck, Award, Users, BookOpen, GraduationCap, MapPin, HeartHandshake } from 'lucide-react';
 import { schoolGeneralInfo, schoolImages } from '../data/schoolData';
+import { normalizeImageUrl, handleImageError } from '../utils/imageUtils';
 
 interface HeroSectionProps {
   generalInfo?: typeof schoolGeneralInfo;
@@ -118,9 +119,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-5">
             <div className="relative rounded-lg overflow-hidden border border-stone-200 bg-stone-100 shadow-sm group">
               <img
-                src={schoolImages.heroCampus}
+                src={normalizeImageUrl(schoolImages.heroCampus)}
                 alt="Gedung SMPS Surya Mandala Kupang NTT"
-                referrerPolicy="no-referrer"
+                loading="eager"
+                onError={(e) => handleImageError(e)}
                 className="w-full h-[320px] sm:h-[380px] object-cover transition-transform duration-500 group-hover:scale-102"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/25 to-transparent flex flex-col justify-end p-5">
